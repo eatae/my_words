@@ -14,3 +14,17 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+
+.DS_Store
+node_modules
+
+.idea
+/.idea
+/.vscode
+/.vagrant
+npm-debug.log
+yarn-error.log
+.env
+.phpunit.result.cache
+package-lock.json
