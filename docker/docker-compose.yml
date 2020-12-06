@@ -7,7 +7,7 @@ services:
     build:
       context: ./nginx
     volumes:
-      - ../:/var/www/symfony
+      - ../:/var/www/mywords
     container_name: ${COMPOSE_PROJECT_NAME}-nginx
     restart: unless-stopped
     ports:
@@ -18,7 +18,7 @@ services:
     build:
       context: ./php-fpm
     volumes:
-      - ../:/var/www/symfony
+      - ../:/var/www/mywords
     container_name: ${COMPOSE_PROJECT_NAME}-php-fpm
     #depends_on:
       #- postgres
@@ -30,8 +30,8 @@ services:
     build:
       context: ./php-cli
     volumes:
-      - ../:/var/www/symfony
-    command: sleep 10000
+      - ../:/var/www/mywords
+    command: sleep 25000
     container_name: ${COMPOSE_PROJECT_NAME}-php-cli
 
 

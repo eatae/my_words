@@ -13,10 +13,10 @@ php-cli
 
 
 Show:
-    localhost:8082
+    mywords:8082
 
 Enter php-cli:
-    docker exec -it my_words-php-cli bash
+    docker exec -it mywords-php-cli bash
 
 Docker-Compose up:
     docker-compose up --build -d

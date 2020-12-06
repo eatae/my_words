@@ -1,5 +1,5 @@
 FROM nginx:1.17
 
-ADD ./symfony.conf /etc/nginx/conf.d/default.conf
+ADD ./mywords.conf /etc/nginx/conf.d/default.conf
 
-WORKDIR /var/www/symfony
+WORKDIR /var/www/mywords
