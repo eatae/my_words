@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Classes\DBAL\LangType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -25,12 +26,12 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(type="string")
      */
     private $username;
 
     /**
-     * @ORM\Column(type="lang", columnDefinition="ENUM('RU', 'EN')")
+     * @ORM\Column(type="lang")
      */
     private $nativeLang;
 
@@ -74,7 +75,6 @@ class User implements UserInterface
 
     /**
      * User name
-     *
      * @see UserInterface
      */
     public function getUsername(): string
@@ -92,7 +92,6 @@ class User implements UserInterface
 
     /**
      * Native lang
-     *
      */
     public function getNativeLang(): string
     {
@@ -105,6 +104,16 @@ class User implements UserInterface
 
         return $this;
     }
+
+
+    /**
+     *  Possible Languages
+     */
+    public function possibleLanguages(): array
+    {
+        return LangType::VALUES;
+    }
+
 
 
 

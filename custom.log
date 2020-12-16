@@ -1,0 +1,24 @@
+array:13 [
+  "name" => "native_lang"
+  "type" => App\Classes\DBAL\LangType {#263}
+  "default" => null
+  "notnull" => true
+  "length" => null
+  "precision" => 0
+  "scale" => 0
+  "fixed" => false
+  "unsigned" => false
+  "autoincrement" => false
+  "columnDefinition" => null
+  "comment" => null
+  "version" => false
+]
+
+
+           
+  Success! 
+           
+
+ Next: Review the new migration "migrations/Version20201215172438.php"
+ Then: Run the migration with php bin/console doctrine:migrations:migrate
+ See https://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html
