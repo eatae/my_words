@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Classes\DBAL\LangType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -46,35 +47,44 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+
 
 
     /**
      * Id
      */
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
-
 
     /**
      * Email
      */
-    public function getEmail(): ?string
-    {
+    public function getEmail(): ?string {
         return $this->email;
     }
 
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
 
-
     /**
-     * User name
+     * Username
+     *
      * @see UserInterface
      */
     public function getUsername(): string
@@ -85,37 +95,22 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
         return $this;
     }
-
 
     /**
      * Native lang
      */
-    public function getNativeLang(): string
-    {
+    public function getNativeLang(): string {
+
         return (string) $this->nativeLang;
     }
 
     public function setNativeLang(string $nativeLang): self
     {
         $this->nativeLang = $nativeLang;
-
         return $this;
     }
-
-
-    /**
-     *  Possible Languages
-     */
-    public function possibleLanguages(): array
-    {
-        return LangType::VALUES;
-    }
-
-
-
 
     /**
      * Role
@@ -138,8 +133,6 @@ class User implements UserInterface
         return $this;
     }
 
-
-
     /**
      * Password
      *
@@ -157,6 +150,32 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * CreatedAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * UpdatedAt
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+
+
+
+    /**
+     *  Possible Languages
+     */
+    public function possibleLanguages(): array
+    {
+        return LangType::VALUES;
+    }
 
     /**
      * Salt
@@ -167,7 +186,6 @@ class User implements UserInterface
     {
         // not needed when using the "bcrypt" algorithm in security.yaml
     }
-
 
     /**
      * Credentials
