@@ -172,7 +172,7 @@ class User implements UserInterface
     /**
      *  Possible Languages
      */
-    public function possibleLanguages(): array
+    public static function possibleLanguages(): array
     {
         return LangType::VALUES;
     }

@@ -2,25 +2,14 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 
 
-class UserFixtures extends Fixture
+class UserFixtures extends BaseFixture
 {
     private $passwordEncoder;
-    protected $mails = [
-        'foobar1@mail.ru', 'foobar2@mail.ru', 'foobar3@mail.ru',
-        'foobar4@mail.ru', 'foobar5@mail.ru', 'foobar6@mail.ru',
-        'foobar7@mail.ru', 'foobar8@mail.ru', 'foobar9@mail.ru',
-        'foobar10@mail.ru'
-    ];
-    protected $names = [
-        'Test1', 'Test2', 'Test3', 'Test4', 'Test5',
-        'Test6', 'Test7', 'Test8', 'Test9', 'Test10'
-    ];
 
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
@@ -28,8 +17,40 @@ class UserFixtures extends Fixture
         $this->passwordEncoder = $passwordEncoder;
     }
 
+    public function loadData(ObjectManager $manager)
+    {
+        $this->createMany(
+            User::class,
+            30,
+            function( User $user, $i ) {
+                if ( $i == 0 ) {
+                    $user->setEmail( 'admin@mail.ru' );
+                    $user->setUsername( 'Admin' );
+                    $user->setNativeLang( User::possibleLanguages()[rand(0,1)] );
+                    $user->setRoles( $user->getRoles() );
+                    $user->setPassword( $this->passwordEncoder->encodePassword($user, '2222') );
+                }
+                elseif ($i == 1 ) {
+                    $user->setEmail( 'user@mail.ru' );
+                    $user->setUsername( 'User' );
+                    $user->setNativeLang( User::possibleLanguages()[rand(0,1)] );
+                    $user->setRoles( $user->getRoles() );
+                    $user->setPassword( $this->passwordEncoder->encodePassword($user, '2222') );
+                } else {
+                    $user->setEmail( $this->faker->email );
+                    $user->setUsername( $this->faker->name.'_'.$i );
+                    $user->setNativeLang( User::possibleLanguages()[rand(0,1)] );
+                    $user->setRoles( $user->getRoles() );
+                    $user->setPassword( $this->passwordEncoder->encodePassword($user, '2222') );
+                }
+            });
 
-    public function load(ObjectManager $manager)
+        $manager->flush();
+    }
+
+
+
+    /*public function load(ObjectManager $manager)
     {
         for ($i = 0; $i < count($this->mails); $i++) {
             $user = new User();
@@ -43,5 +64,7 @@ class UserFixtures extends Fixture
             $manager->flush();
         }
 
-    }
+    }*/
+
+
 }
