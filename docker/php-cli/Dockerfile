@@ -35,6 +35,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+#  NodeJS (with NPM), and Yarn
+RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
+RUN apt-get update \
+ && apt-get install -y \
+ nodejs
+RUN npm install -g yarn
+
+
+
 # symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
     && mv /root/.symfony/bin/symfony /usr/local/bin/symfony
