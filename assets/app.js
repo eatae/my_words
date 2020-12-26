@@ -19,4 +19,4 @@ const $ = require('jquery');
 require('bootstrap');
 
 /* TEST */
-//console.log(Boots);
+console.log('Boots');
