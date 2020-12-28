@@ -99,6 +99,9 @@
     "egulias/email-validator": {
         "version": "2.1.22"
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.1"
+    },
     "fzaninotto/faker": {
         "version": "v1.9.2"
     },
@@ -119,9 +122,6 @@
     },
     "nikic/php-parser": {
         "version": "v4.10.2"
-    },
-    "ocramius/proxy-manager": {
-        "version": "2.2.3"
     },
     "php": {
         "version": "7.3"
@@ -359,9 +359,6 @@
     "symfony/options-resolver": {
         "version": "v5.1.7"
     },
-    "symfony/orm-pack": {
-        "version": "v2.0.0"
-    },
     "symfony/phpunit-bridge": {
         "version": "4.3",
         "recipe": {
@@ -571,9 +568,6 @@
     },
     "twig/twig": {
         "version": "v3.1.0"
-    },
-    "webimpress/safe-writer": {
-        "version": "2.1.0"
     },
     "webmozart/assert": {
         "version": "1.9.1"

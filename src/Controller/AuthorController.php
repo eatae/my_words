@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,10 +30,16 @@ class AuthorController extends AbstractController
      */
     public function actionCreate(Request $request, ValidatorInterface $validator): Response
     {
-        $author = new Author();
-        dump($request);
 
+        $repository = $this->getDoctrine()->getRepository(Author::class);
+        if ($request->isMethod('GET')) {
+            return $this->render('author/create.html.twig');
+        }
 
+        /**** TEST ****/
+        //$em = $this->getDoctrine()->getManager();
+        dd($repository);
+        //dd($validator->validate($author));
         return $this->render('author/create.html.twig');
     }
 

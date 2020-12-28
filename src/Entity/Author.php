@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AuthorRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AuthorRepository::class)
@@ -12,7 +13,7 @@ class Author
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValu(estrategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -21,7 +22,6 @@ class Author
      * @ORM\Column(type="string", length=255)
      *
      * @Assert\NotBlank
-     *
      */
     private $name;
 
@@ -29,12 +29,12 @@ class Author
      * @ORM\Column(type="string", length=255)
      *
      * @Assert\NotBlank
-     *
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $gender;
 
